@@ -122,7 +122,7 @@ class clf_data(object):
     """
     Container to separate and hold training and test data.
     __init__ function by default splits the data into
-    10%% test set and 90%% training set (shuffled)
+    10% test set and 90% training set (shuffled)
     """
     def __init__(self, vec, split=.1):
         """
@@ -147,17 +147,14 @@ class clf_data(object):
 
 
 class data_builder(object):
-    
     def __init__(self, foldername, filename=None):
         """
         Initialize with either the name of a folder or a file to extract the data from.
         If initializing with filename from a different directory, call with both folder
         and filename as separate args.
         """
-        super(data_builder, self).__init__()
         self.folder = foldername if os.path.isdir(foldername) else os.path.dirname(foldername)
-        self.fname =  [f for f in glob(self.folder + '/*_pcd.txt')] if not filename else [os.path.join(self
-        .folder, filename)]
+        self.fname =  [f for f in glob(self.folder + '/*_pcd.txt')] if not filename else [os.path.join(self.folder, filename)]
         self.pos_data = {}  # {author: [[par1== (word1, POS), ...], [par2...], ...]}
         self.master_tags = {}  # comprehensive dict with every seen tag-word; each val==0
         self.tag_word_vecs = {}  # {author: [(par1==0,1,0,1), (par2), ...], author2:...}
@@ -294,9 +291,6 @@ def batch_test(vec_list, iters=1, target=1):
     print 'Overall Precision: %2.4f' % (sum(Prec) / len(Prec))
     print 'Overall Recall: %2.4f' % (sum(Rec) / len(Rec))
     cm = confusion_matrix(Y, y_)
-    # pl.matshow(cm)
-    # pl.title('Confusion matrix')
-    # pl.colorbar()
     print cm
     print ''
     return Y, y_, cm
@@ -371,12 +365,6 @@ def main():
     pl.xlabel('Actual author')
     pl.ylabel('Predicted author')
     pl.savefig('conf_mat.pdf')
-    # coauth_class = data_builder('test', 'comb_StarnerAshbrook.txt')
-    # coauth_class.pos_vectorize()
-    # coauth_class = data_builder('test', 'comb_StarnerLee.txt')
-    # coauth_class.pos_vectorize()
-    # coauth_class = data_builder('test', 'comb_starnerMann.txt')
-    # coauth_class.pos_vectorize()
 
 
 if __name__ == '__main__':
