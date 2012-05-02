@@ -6,4 +6,4 @@ The 'subs_xval' function takes as argument a data_builder and integer 'iters', a
 
 This file uses LinearSVC from the 3rd party `scikits learn module`_, and POS tagger, WordNetLemmatizer and PorterStemmer from the NLTK (natural language toolkit).
 
-.. _scikit-learn: http://scikit-learn.org/stable/
+.. _`scikits learn module`: http://scikit-learn.org/stable/>
